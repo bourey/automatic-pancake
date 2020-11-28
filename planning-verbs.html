@@ -1,0 +1,211 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+      const foods = [
+        { e: 'an apple', s: 'una manzana' },
+        { e: 'the turkey', s: 'el pavo' },
+        { e: 'the corn', s: 'el maíz' },
+        { e: 'the vegetables', s: 'los legumbres' },
+        { e: 'meat sauce', s: 'la salsa de carne' },
+        { e: 'vegetables', s: 'los legumbres' },
+        { e: 'stuffing', s: 'el relleno' },
+        { e: 'the mashed potatoes', s: 'el puré de papas' },
+        { e: 'apple pie', s: 'la torta de manzana' },
+        { e: 'pumpkin pie', s: 'la torta de calbaza' },
+        { e: 'dinner', s: 'la cena' },
+      ];
+
+      const opts1 = [
+        { e: 'I plan to', s: 'Yo pienso'},
+        { e: 'You plan to', s: 'Tú piensas' },
+        { e: 'She plans to', s: 'Ella piensa'},
+        { e: 'We plan to', s: 'Nosotros pensamos'},
+        { e: 'They plan to', s: 'Ellos piensan'},
+        { e: 'I am going to', s: 'Yo voy a' },
+        { e: 'You are going to', s: 'Tú vas a' },
+        { e: 'She is going to', s: 'Ella va a'},
+        { e: 'We are going to', s: 'Nosotros vamos a'},
+        { e: 'They are going to', s: 'Ellos van a'},
+        { e: 'I want to', s: 'Yo quiero' },
+        { e: 'You want to', s: 'Tú quieres' },
+        { e: 'She wants to', s: 'Ella quiere' },
+        { e: 'We want to', s: 'Nosotros queremos' },
+        { e: 'They want to', s: 'Ellos quieren' },
+      ];
+      const opts2 = [
+        { e: 'eat', s: 'comer', opts: foods},
+        { e: 'go', s: 'ir', opts: [
+          { e: 'to school', s: 'a la escuela' },
+          { e: 'to the park', s: 'al parque' },
+          { e: 'to the city', s: 'a la ciudad' },
+        ]},
+        { e: 'do', s: 'hacer', opts: [
+          { e: 'my homework', s: 'la tarea'}
+        ]},
+        { e: 'dance', s: 'bailar', opts: [             //
+          { e: 'at the wedding', s: 'en la boda' },
+        ]},
+        { e: 'buy', s: 'comprar', opts: [
+          { e: 'clothes', s: 'la ropa'},
+          { e: 'a table', s: 'una mesa'},
+          { e: 'a dog', s: 'un perro'},
+          { e: 'a zoo', s: 'un zoológico' },
+        ]},
+        { e: 'visit', s: 'visitar', opts: [
+          { e: 'the city', s: 'la ciudad'},
+        ]},
+        { e: 'rest', s: 'descansar' },
+        { e: 'open', s: 'abrir' },
+        { e: 'finish', s: 'acabar' },
+        { e: 'help', s: 'ayudar' },
+        { e: 'dance', s: 'bailar' },
+        { e: 'kiss', s: 'besar' },
+        { e: 'look for', s: 'buscar' },
+        { e: 'fall', s: 'caer' },
+        { e: 'walk', s: 'caminar' },
+        { e: 'sing', s: 'cantar' },
+        { e: 'close', s: 'cerrar' },
+        { e: 'cook', s: 'comer' },
+        { e: 'cut', s: 'correr', opts: foods },
+        { e: 'give', s: 'dar' },
+        { e: 'owe', s: 'debar' },
+        { e: 'say', s: 'decir' },
+        { e: 'draw', s: 'dibujar' },
+        { e: 'sleep', s: 'dormir' },
+        { e: 'enter', s: 'entrar' },
+        { e: 'hide', s: 'escondar' },
+        { e: 'expect', s: 'esperar' },
+        { e: 'shout', s: 'gritar' },
+        { e: 'run', s: 'correr' },
+        { e: 'organize', s: 'organizar' },       //
+        { e: 'play', s: 'jugar' },
+        { e: 'wash', s: 'lavar' },
+        { e: 'read', s: 'leer' },
+        { e: 'cry', s: 'llorar' },
+        { e: 'look', s: 'mirar' },
+        { e: 'bite', s: 'mordar', opts: foods },
+        { e: 'swim', s: 'nadar' },
+        { e: 'comb', s: 'peinar' },              //
+        { e: 'be able', s: 'podar' },
+        { e: 'put', s: 'poner' },
+        { e: 'turn on', s: 'prender' },
+        { e: 'give away', s: 'regalar' },
+        { e: 'tear', s: 'romplar' },
+        { e: 'know', s: 'sabor' },
+        { e: 'go out', s: 'salir' },
+        { e: 'jump', s: 'saltar' },
+        { e: 'greet', s: 'saludar' },
+        { e: 'feel', s: 'sentir' },
+        { e: 'blow', s: 'soplar' },
+        { e: 'touch', s: 'tocar' },
+        { e: 'bring', s: 'traer', opts: foods },
+        { e: 'come', s: 'venir' },
+        { e: 'see', s: 'ver', opts: foods },
+      ];
+
+      const len1 = opts1.length;
+      const len2 = opts2.length;
+
+      function getRandom(opts) {
+        return opts[Math.floor(Math.random()*opts.length)];
+      }
+
+      let e, s, submitted;
+      function reset() {
+        submitted = false;
+        const opt1 = getRandom(opts1);
+        const opt2 = getRandom(opts2);
+        e = opt1.e + ' ' + opt2.e;
+        s = opt1.s + ' ' + opt2.s;
+        if (opt2.opts) {
+          const opt3 = getRandom(opt2.opts);
+          e += ' ' + opt3.e;
+          s += ' ' + opt3.s;
+        }
+        $('#english').text(e);
+        $('#spanish').text('');
+        $('#attempt').text('');
+        $('#answer').val('');
+        $('#answer').removeClass('correct').removeClass('incorrect');
+      }
+
+      function addChar(char, correct) {
+        return $('<span/>').text(char).addClass(correct ? 'correct' : 'incorrect');
+      }
+
+      function init() {
+        $('form').submit(function(e) {
+          e.preventDefault();
+          let answer = $('#answer').val();
+          answer = answer.replace(/([aeiou])\'/, function(match, p1) {
+            switch(p1) {
+              case 'a':
+                return 'á';
+              case 'e':
+                return 'é';
+              case 'i':
+                return 'í';
+              case 'o':
+                return 'ó';
+              case 'u':
+                return 'ú';
+              default:
+                return p1;
+            }
+          });
+          answer = answer.replace('n~', 'ñ')
+          $('#answer').val(answer);
+          if (answer === s) {
+            if (submitted) {
+              reset();
+            } else {
+              submitted = true;
+              $('#answer').addClass('correct');
+            }
+          } else {
+            $('#attempt').text('Attempt: ');
+            $('#spanish').text('Answer:  ');
+            let i = 0;
+            while (i < answer.length) {
+              if (i >= s.length) {
+                $('#attempt').append(addChar(answer.charAt(i), false));
+              } else if (answer.charAt(i) === s.charAt(i)) {
+                $('#attempt').append(addChar(answer.charAt(i), true));
+                $('#spanish').append(addChar(s.charAt(i), true));
+              } else {
+                $('#attempt').append(addChar(answer.charAt(i), false));
+                $('#spanish').append(addChar(s.charAt(i), false));
+              }
+              i++;
+            }
+            while (i < s.length) {
+              $('#spanish').append(addChar(s.charAt(i), false));
+              i++;
+            }
+            $('#answer').addClass('incorrect');
+          }
+        });
+        reset();
+      }
+
+      window.onload = init;
+    </script>
+    <style>
+      p, input { font-family: sans-serif; font-size: 24px; }
+      .correct { color: green; }
+      .incorrect { color: red; }
+      input.correct { outline: green; }
+      input.incorrect { outline: red; }
+    </style>
+  </head>
+  <body>
+    <p id="english" style="font-weight: bold;"></p>
+    <p id="attempt"></p>
+    <p id="spanish"></p>
+    <form >
+      <input id="answer" size="100">
+    </form>
+  </body>
+</html>
