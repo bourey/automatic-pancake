@@ -162,7 +162,9 @@
               reset();
             } else {
               submitted = true;
-              $('#answer').addClass('correct');
+              $('#attempt').text('');
+              $('#spanish').text('');
+              $('#answer').removeClass('incorrect').addClass('correct');
             }
           } else {
             $('#attempt').text('Attempt: ');
