@@ -1,0 +1,7 @@
+html { font-family: sans-serif; }
+p, input, li { font-size: 24px; }
+li { padding-bottom: 10px; }
+.correct { color: green; }
+.incorrect { color: red; }
+input.correct { outline: green; }
+input.incorrect { outline: red; }
