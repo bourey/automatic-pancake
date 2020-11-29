@@ -39,7 +39,7 @@ function checkForm(answers, resetFn) {
     attempt = attempt.replace('n~', 'ñ')
     input.val(attempt);
 
-    const answer = answers[0];
+    const answer = answers[i];
     const answerP = $(q).find('.answer');
     if (attempt === answer) {
       answerP.text('')
