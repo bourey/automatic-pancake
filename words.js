@@ -37,7 +37,7 @@ const standardVerbs = [
   { e: 'walk', s: 'caminar' },
   { e: 'sing', s: 'cantar' },
   { e: 'close', s: 'cerrar' },
-  { e: 'cook', s: 'comer' },
+  { e: 'cook', s: 'cocinar' },
   { e: 'cut', s: 'correr' },
   { e: 'give', s: 'dar' },
   { e: 'owe', s: 'debar' },
