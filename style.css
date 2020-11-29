@@ -5,3 +5,11 @@ li { padding-bottom: 10px; }
 .incorrect { color: red; }
 input.correct { outline: green; }
 input.incorrect { outline: red; }
+
+.options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  border: thin solid black;
+}

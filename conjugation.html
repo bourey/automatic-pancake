@@ -28,7 +28,7 @@
     function getNewOpt(lastOpt, opts) {
       const opt = getRandom(opts);
       if (lastOpt && lastOpt.e === opt.e) {
-        return getNewOpt();
+        return getNewOpt(lastOpt, opts);
       } else {
         return opt;
       }

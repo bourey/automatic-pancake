@@ -1,0 +1,66 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./lib.js"></script>
+  <script type="text/javascript" charset="UTF-8">
+    const places = [
+      { e: 'zoo', s: 'zoológico', g: 'm'},
+      { e: 'school', s: 'escuela', g: 'f'},
+      { e: 'park', s: 'parque', g: 'm' },
+      { e: 'city', s: 'ciudad', g: 'f' },
+    ];
+
+    let opt, submitted, submittedCorrectly, lastOpt, e, s;
+    function reset() {
+      submittedCorrectly = false;
+      lastOpt = opt;
+      opt = getNewOpt(lastOpt, places);
+      const to = getRandom([true, false]);
+      const article = getRandom(['a', 'the']);
+      e = to ? 'to ' : '';
+      e += article + ' ' + opt.e;
+      s = '';
+      if (to && article === 'the' && opt.g === 'm') {
+        s = 'al ' + opt.s;
+      } else {
+        s = to ? 'a ' : '';
+        if (article === 'the') {
+          s += opt.g === 'f' ? 'la ' : 'el ';
+        } else {
+          s += opt.g === 'f' ? 'una ' : 'un ';
+        }
+        s += opt.s;
+      }
+      $('#word').text(e);
+      $('.answer').text('');
+      $('input').val('').removeClass('correct').removeClass('incorrect');
+      $('input:first').focus();
+    }
+
+    function init() {
+      $('form').submit(function (e) {
+        e.preventDefault();
+        checkForm([s], reset);
+      });
+      reset();
+    }
+
+    window.onload = init;
+  </script>
+</head>
+
+<body>
+  <h1 id="word"></h1>
+  <form>
+    <div class="question">
+      <input name="i" size="50">
+      <p class="answer">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+
+</html>

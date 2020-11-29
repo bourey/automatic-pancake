@@ -1,0 +1,80 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./lib.js"></script>
+  <script src="./words.js"></script>
+  <script type="text/javascript" charset="UTF-8">
+
+    let opt, submitted, submittedCorrectly, lastOpt, e, s;
+
+    let opts;
+    function updateOpts() {
+      opts = [];
+      if ($('#stemCheck').prop('checked')) {
+        opts = opts.concat(stemChangingVerbs);
+      }
+      if ($('#standardCheck').prop('checked')) {
+        opts = opts.concat(standardVerbs);
+      }
+      if ($('#thanksCheck').prop('checked')) {
+        opts = opts.concat(thanksgiving);
+      }
+    }
+
+    function reset() {
+      submittedCorrectly = false;
+      lastOpt = opt;
+      opt = getNewOpt(lastOpt, opts);
+      const word = (opt.g ? '' : 'to ') + opt.e;
+      $('#word').text(word);
+      $('.answer').text('');
+      $('input').val('').removeClass('correct').removeClass('incorrect');
+      $('input:first').focus();
+    }
+
+    function init() {
+      updateOpts();
+      $('#stemCheck').change(updateOpts);
+      $('#standardCheck').change(updateOpts);
+      $('#thanksCheck').change(updateOpts);
+      $('form').submit(function (e) {
+        e.preventDefault();
+        let answer = '';
+        if (opt.g) {
+          if (opt.p) {
+            answer += opt.g === 'f' ? 'las ' : 'los ';
+          } else {
+            answer += opt.g === 'f' ? 'la ' : 'el ';
+          }
+        }
+        answer += opt.s;
+        checkForm([answer], reset);
+      });
+      reset();
+    }
+
+    window.onload = init;
+  </script>
+</head>
+
+<body>
+  <h1 id="word"></h1>
+  <form>
+    <div class="question">
+      <input name="i" size="50">
+      <p class="answer">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <div class="options">
+    <input type="checkbox" id="stemCheck" name="stem" checked> Stem-changing verbs<br />
+    <input type="checkbox" id="standardCheck" name="standard" checked> Standard verbs<br />
+    <input type="checkbox" id="thanksCheck" name="thanks" checked>Thanksgiving<br />
+    <button onclick="reset()">Reset</button>
+  </div>
+</body>
+
+</html>
