@@ -13,3 +13,11 @@ input.incorrect { outline: red; }
   padding: 10px;
   border: thin solid black;
 }
+
+.hints {
+  display: none;
+}
+.hints li {
+  font-size: 16px;
+  padding-bottom: 0;
+}
