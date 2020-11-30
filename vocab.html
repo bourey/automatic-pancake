@@ -22,6 +22,9 @@
       if ($('#standardCheck').prop('checked')) {
         opts = opts.concat(standardVerbs);
       }
+      if ($('#placesCheck').prop('checked')) {
+        opts = opts.concat(placesAndEvents);
+      }
       if ($('#thanksCheck').prop('checked')) {
         opts = opts.concat(thanksgiving);
       }
@@ -43,6 +46,7 @@
       $('#stemCheck').change(updateOpts);
       $('#irregularCheck').change(updateOpts);
       $('#standardCheck').change(updateOpts);
+      $('#placesCheck').change(updateOpts);
       $('#thanksCheck').change(updateOpts);
       $('form').submit(function (e) {
         e.preventDefault();
@@ -77,6 +81,7 @@
     <input type="checkbox" id="stemCheck" name="stem" checked> Stem-changing verbs<br />
     <input type="checkbox" id="irregularCheck" name="stem" checked> Other irregular verbs<br />
     <input type="checkbox" id="standardCheck" name="standard" checked> Standard verbs<br />
+    <input type="checkbox" id="placesCheck" name="thanks" checked>Places and events<br />
     <input type="checkbox" id="thanksCheck" name="thanks" checked>Thanksgiving<br />
     <button onclick="reset()">Reset</button>
   </div>

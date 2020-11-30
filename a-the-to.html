@@ -5,19 +5,13 @@
   <link rel="stylesheet" href="./style.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="./lib.js"></script>
+  <script src="./words.js"></script>
   <script type="text/javascript" charset="UTF-8">
-    const places = [
-      { e: 'zoo', s: 'zoológico', g: 'm'},
-      { e: 'school', s: 'escuela', g: 'f'},
-      { e: 'park', s: 'parque', g: 'm' },
-      { e: 'city', s: 'ciudad', g: 'f' },
-    ];
-
     let opt, submitted, submittedCorrectly, lastOpt, e, s;
     function reset() {
       submittedCorrectly = false;
       lastOpt = opt;
-      opt = getNewOpt(lastOpt, places);
+      opt = getNewOpt(lastOpt, placesAndEvents);
       const to = getRandom([true, false]);
       const article = getRandom(['a', 'the']);
       e = to ? 'to ' : '';
