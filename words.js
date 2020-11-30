@@ -1,3 +1,22 @@
+const gettingReady = [
+  { e: 'bathrobe', s: 'bata', g: 'f' },
+  { e: 'slippers', s: 'pantuflas', g: 'f', p: true },
+  { e: 'hairbrush', s: 'cepillo', g: 'm' },
+  { e: 'comb', s: 'peine', g: 'm' },
+  { e: 'toothbrush', s: 'cepillo de dientes', g: 'm' },
+  { e: 'toothpaste', s: 'pasta de dientes', g: 'f' },
+  { e: 'deoderant', s: 'desodorante', g: 'm' },
+  { e: 'razor', s: 'rasurador', g: 'm' },
+  { e: 'body lotion', s: 'crema', g: 'f' },
+  { e: 'perfume', s: 'loción', g: 'f' },
+  { e: 'shampoo', s: 'champú', g: 'm' },
+  { e: 'soap', s: 'jabón', g: 'm' },
+  { e: 'maquillaje', s: 'makeup', g: 'm' },
+  { e: 'mirror', s: 'espejo', g: 'm' },
+  { e: 'towel', s: 'toalla', g: 'f' },
+  { e: 'alarm clock', s: 'reloj despertador', g: 'm' },
+];
+
 const placesAndEvents = [
   { e: 'country', s: 'campo', g: 'm' },
   { e: 'zoo', s: 'zoológico', g: 'm' },
