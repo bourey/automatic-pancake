@@ -10,15 +10,9 @@
     let opts;
     function updateOpts() {
       opts = [];
-      if ($('#stemCheck').prop('checked')) {
-        opts = opts.concat(stemChangingVerbs);
-      }
-      if ($('#irregularCheck').prop('checked')) {
-        opts = opts.concat(irregularVerbs);
-      }
-      if ($('#standardCheck').prop('checked')) {
-        opts = opts.concat(standardVerbs);
-      }
+      $('input[name="wordSet"]:checked').each((i, input) => {
+        opts = opts.concat(wordSets[$(input).val()].words);
+      });
     }
 
     let opt, submitted, submittedCorrectly, lastOpt;
@@ -28,7 +22,7 @@
       opt = getNewOpt(lastOpt, opts);
       $('#word').text(opt.s + ' (' + opt.e + ')');
       $('.answer').text('');
-      $('input').val('').removeClass('correct').removeClass('incorrect');
+      $('.question input').val('').removeClass('correct').removeClass('incorrect');
       $('input:first').focus();
     }
 
@@ -37,10 +31,17 @@
     }
 
     function init() {
+      getWordSetKeys().forEach((key) => {
+        if (wordSets[key].type === 'verb') {
+          $('#wordSetInputs')
+            .append(`<input type="checkbox" name="wordSet" value="${key}" checked="checked">`)
+            .append(wordSets[key].display)
+            .append('<br>');
+        }
+      });
       updateOpts();
-      $('#stemCheck').change(updateOpts);
-      $('#irregularCheck').change(updateOpts);
-      $('#standardCheck').change(updateOpts);
+      $('input[name="wordSet"]').change(updateOpts);
+
       $('form').submit(function (e) {
         e.preventDefault();
         checkForm(opt.c, reset);
@@ -78,9 +79,10 @@
     <button type="submit">Submit</button>
   </form>
   <div class="options">
-    <input type="checkbox" id="stemCheck" name="stem" checked> Stem-changing verbs<br/>
-    <input type="checkbox" id="irregularCheck" name="stem" checked> Other irregular verbs<br />
-    <input type="checkbox" id="standardCheck" name="standard" checked> Standard verbs<br/>
+    <fieldset id="wordSetInputs">
+      <legend>Verb types</legend>
+    </fieldset>
+    <br>
     <button onclick="reset()">Reset</button>
   </div>
 </body>

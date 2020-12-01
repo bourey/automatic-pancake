@@ -13,24 +13,9 @@
     let opts;
     function updateOpts() {
       opts = [];
-      if ($('#stemCheck').prop('checked')) {
-        opts = opts.concat(stemChangingVerbs);
-      }
-      if ($('#irregularCheck').prop('checked')) {
-        opts = opts.concat(irregularVerbs);
-      }
-      if ($('#standardCheck').prop('checked')) {
-        opts = opts.concat(standardVerbs);
-      }
-      if ($('#gettingReadyCheck').prop('checked')) {
-        opts = opts.concat(gettingReady);
-      }
-      if ($('#placesCheck').prop('checked')) {
-        opts = opts.concat(placesAndEvents);
-      }
-      if ($('#thanksCheck').prop('checked')) {
-        opts = opts.concat(thanksgiving);
-      }
+      $('input[name="wordSet"]:checked').each((i, input) => {
+        opts = opts.concat(wordSets[$(input).val()].words);
+      });
     }
 
     function reset() {
@@ -40,18 +25,20 @@
       const word = (opt.g ? '' : 'to ') + opt.e;
       $('#word').text(word);
       $('.answer').text('');
-      $('input').val('').removeClass('correct').removeClass('incorrect');
+      $('.question input').val('').removeClass('correct').removeClass('incorrect');
       $('input:first').focus();
     }
 
     function init() {
+      getWordSetKeys().forEach((key) => {
+        $('#wordSetInputs')
+          .append(`<input type="checkbox" name="wordSet" value="${key}" checked="checked">`)
+          .append(wordSets[key].display)
+          .append('<br>');
+      });
       updateOpts();
-      $('#stemCheck').change(updateOpts);
-      $('#irregularCheck').change(updateOpts);
-      $('#standardCheck').change(updateOpts);
-      $('#gettingReadyCheck').change(updateOpts);
-      $('#placesCheck').change(updateOpts);
-      $('#thanksCheck').change(updateOpts);
+      $('input[name="wordSet"]').change(updateOpts);
+
       $('form').submit(function (e) {
         e.preventDefault();
         let answer = '';
@@ -82,12 +69,10 @@
     <button type="submit">Submit</button>
   </form>
   <div class="options">
-    <input type="checkbox" id="stemCheck" name="stem" checked> Stem-changing verbs<br />
-    <input type="checkbox" id="irregularCheck" name="stem" checked> Other irregular verbs<br />
-    <input type="checkbox" id="standardCheck" name="standard" checked> Standard verbs<br />
-    <input type="checkbox" id="gettingReadyCheck" name="gettingReady" checked>CH7-2A Getting Ready<br />
-    <input type="checkbox" id="placesCheck" name="thanks" checked>Places and events<br />
-    <input type="checkbox" id="thanksCheck" name="thanks" checked>Thanksgiving<br />
+    <fieldset id="wordSetInputs">
+      <legend>Word sets</legend>
+    </fieldset>
+    <br>
     <button onclick="reset()">Reset</button>
   </div>
 </body>

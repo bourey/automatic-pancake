@@ -11,7 +11,7 @@
     function reset() {
       submittedCorrectly = false;
       lastOpt = opt;
-      opt = getNewOpt(lastOpt, placesAndEvents);
+      opt = getNewOpt(lastOpt, wordSets.placesAndEvents.words);
       const to = getRandom([true, false]);
       const article = getRandom(['a', 'the']);
       e = to ? 'to ' : '';
