@@ -77,7 +77,7 @@ const wordSets = {
     type: 'verb', 
     words: [
       { e: 'have lunch', s: 'almorzar', c: ['almuerzo', 'almuerzas', 'almuerza', 'almorzamos', 'almuerzan'] },
-      { e: 'close', s: 'cerrar', c: ['cierro', 'cierras', 'cierra', 'ceramos', 'cierran'] },
+      { e: 'close', s: 'cerrar', c: ['cierro', 'cierras', 'cierra', 'cerramos', 'cierran'] },
       { e: 'say', s: 'decir', c: ['digo', 'dices', 'dice', 'decimos', 'dicen'] },
       { e: 'sleep', s: 'dormir', c: ['duermo', 'duermes', 'duerme', 'dormimos', 'duermen'] },
       { e: 'find', s: 'encontrar', c: ['encuentro', 'encuentras', 'encuentra', 'encontramos', 'encuentren'] },
