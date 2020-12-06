@@ -62,7 +62,7 @@ const wordSets = {
       { e: 'fall', s: 'caer', c: ['caigo', 'caes', 'cae', 'caemos', 'caen'] },
       { e: 'know / meet', s: 'conocer', c: ['conozco', 'conoces', 'conoce', 'conocemos', 'conocen'] },
       { e: 'give', s: 'dar', c: ['doy', 'das', 'da', 'damos', 'dan'] },
-      { e: 'ski', s: 'esquiar', c: ['esquío', 'esquías', 'esquía', 'esquiamos', 'esqúian'] },
+      { e: 'ski', s: 'esquiar', c: ['esquío', 'esquías', 'esquía', 'esquiamos', 'esquían'] },
       { e: 'be', s: 'estar', c: ['estoy', 'estás', 'está', 'estamos', 'están'] },
       { e: 'do', s: 'hacer', c: ['hago', 'haces', 'hace', 'hacemos', 'hacen'] },
       { e: 'go', s: 'ir', c: ['voy', 'vas', 'va', 'vamos', 'van'] },
